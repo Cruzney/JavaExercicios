@@ -1,3 +1,8 @@
+package br.com.ada;
+
+import br.com.ada.exibicao.Estoque;
+import br.com.ada.vo.Produto;
+
 import java.util.Scanner;
 
     /*
@@ -14,7 +19,7 @@ import java.util.Scanner;
         4 - Dado o preço de um produto, calcular o valor total em estoque.
      */
 
-public class stockUpdater {
+public class StockUpdater {
 
     String[] descProds;
     Integer[] quantProds;
@@ -45,12 +50,10 @@ public class stockUpdater {
             System.out.println("Deseja continuar ajustando o Estoque ? 1 = Sim / 2 = Não ");
             int simNao = entrada.nextInt();
 
+            estoque.consultaEstoque();
+            estoque.calculaValorEstoque();
             if (simNao == 1) {
-                estoque.consultaEstoque();
-                estoque.calculaValorEstoque();
                 estoque.atualizaEstoque(qtdProdutos);
-                estoque.consultaEstoque();
-                estoque.calculaValorEstoque();
             }
             else {
                 break;
@@ -59,9 +62,10 @@ public class stockUpdater {
 
         }
     }
-    // Codigo antigo
+    // Codigo antigo (Antes de ser refatorado em aula)
+/*
     public static void main2(String[] args) {
-        stockUpdater updater = new stockUpdater(); // instancia da classe por não ter declarado static
+        StockUpdater updater = new StockUpdater (); // instancia da classe por não ter declarado static
         Scanner entrada = new Scanner(System.in);
 
         System.out.println("Digite a quantidade de produtos que deseja cadastrar: ");
@@ -89,17 +93,18 @@ public class stockUpdater {
             updater.consultaEstoque();
             updater.calculaValorEstoque();
 
-            if (simNao == 2) {
-                updater.consultaEstoque();
-                updater.calculaValorEstoque();
+            if (simNao == 1) {
+//                updater.consultaEstoque();
+//                updater.calculaValorEstoque();
                 updater.atualizaEstoque(qtdp);
+            } else {
                 break;
             }
 
 
         }
     }
-
+*/
     public void atualizaEstoque(int qtdp) {
         descProds = new String[qtdp]; // Quantidade ou tamanho do array
         quantProds = new Integer[qtdp];
@@ -147,6 +152,8 @@ public class stockUpdater {
 
 
 // Codigo novo refatorado em aula
+    /*  --- todo o código abaixo foi refatorado em aula --- transformando em classes e métodos --- */
+    /*
     static class Estoque {
         Scanner entrada = new Scanner(System.in);
         Produto[] produtos;
@@ -161,7 +168,7 @@ public class stockUpdater {
 
             for (int i = 0; i < produtos.length; i++) {
                 Produto p = new Produto();
-                entrada.nextLine();
+               // entrada.nextLine(); // Limpar o buffer
                 System.out.printf("Digite a Descrição do %d° Produto: \n", i + 1);
                 p.descricao = entrada.nextLine();
 
@@ -208,5 +215,5 @@ public class stockUpdater {
         int quantidade;
         double preco;
     }
-
+*/
 }
